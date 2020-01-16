@@ -15,6 +15,8 @@ import bendriss.tarek.instantsystem.viewmodel.MainViewModel;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 
 import java.util.List;
 
@@ -41,6 +43,27 @@ public class MainActivity extends AppCompatActivity {
         swipeRefresh.setOnRefreshListener(() -> {
             getPopularBlog();
         });
+
+
+
+        mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                findViewById(R.id.childScroll).getParent().requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+        /*
+        childScroll.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+        */
+
     }
     private void initializationViews() {
         swipeRefresh = findViewById(R.id.swiperefresh);

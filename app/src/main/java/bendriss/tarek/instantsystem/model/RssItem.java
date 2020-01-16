@@ -5,6 +5,7 @@ package bendriss.tarek.instantsystem.model;
  */
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.xml.sax.Attributes;
 
 @Root(name = "item", strict = false)
 public class RssItem
@@ -20,6 +21,12 @@ public class RssItem
 
     @Element
     private String description;
+
+    @Element(name = "enclosure", required = false)
+    public String enclosure;//
+
+    //@Element
+    //public RssImage image;
 
     @Override
     public String toString() {

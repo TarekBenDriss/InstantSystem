@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
 public class RssImage
 {
     @Element
-    private String url;
+    public String url;
 
     @Element
     private String width;

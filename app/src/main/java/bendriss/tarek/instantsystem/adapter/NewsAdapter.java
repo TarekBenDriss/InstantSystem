@@ -6,9 +6,11 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.content.Intent;
 import android.net.Uri;
@@ -59,19 +61,21 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public class ViewHolder extends BaseViewHolder {
         ImageView ivThumbnail;
         TextView tvTitle;
+        ScrollView scrollView;
         TextView tvDescription;
         TextView tvLink;
         public ViewHolder(View itemView) {
             super(itemView);
             ivThumbnail = itemView.findViewById(R.id.ivThumbnail);
             tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
-            tvLink = itemView.findViewById(R.id.tvLink);
+            scrollView = itemView.findViewById(R.id.childScroll);
+            //tvDescription = itemView.findViewById(R.id.tvDescription);
+            //tvLink = itemView.findViewById(R.id.tvLink);
         }
         protected void clear() {
             ivThumbnail.setImageDrawable(null);
-            tvTitle.setText("");
-            tvLink.setText("");
+            //tvTitle.setText("");
+            //tvLink.setText("");
         }
         public void onBind(int position) {
             super.onBind(position);
@@ -85,11 +89,20 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 tvTitle.setText(mBlog.getTitle());
             }
             if (mBlog.getDescription() != null) {
-                tvDescription.setText(mBlog.getDescription());
+                //tvDescription.setText(mBlog.getDescription());
             }
             if (mBlog.getLink() != null) {
-                tvLink.setText(mBlog.getLink());
+                //tvLink.setText(mBlog.getLink());
             }
+            scrollView.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    // Disallow the touch request for parent scroll on touch of child view
+                    v.getParent().requestDisallowInterceptTouchEvent(true);
+                    return false;
+                }
+            });
+            /*
             tvLink.setOnClickListener(v -> {
                 if (mBlog.getLink() != null) {
                     try {
@@ -103,6 +116,7 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     }
                 }
             });
+            */
         }
     }
 }

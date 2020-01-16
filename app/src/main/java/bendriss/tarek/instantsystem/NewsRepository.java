@@ -9,6 +9,7 @@ import java.util.List;
 import androidx.lifecycle.MutableLiveData;
 import bendriss.tarek.instantsystem.model.News;
 import bendriss.tarek.instantsystem.model.NewsWrapper;
+import bendriss.tarek.instantsystem.model.RssItem;
 import bendriss.tarek.instantsystem.service.RestApiService;
 import bendriss.tarek.instantsystem.service.RetrofitInstance;
 import retrofit2.Call;
@@ -35,7 +36,9 @@ public class NewsRepository {
             @Override
             public void onResponse(Call<NewsWrapper> call, Response<NewsWrapper> response) {
                 NewsWrapper mBlogWrapper = response.body();
-                Log.e("ERRKR",response.body().channel.item.get(0).title.toString());
+                if(response.body().channel.item.get(0).enclosure!=null)
+                Log.e("ERRKR",response.body().channel.item.get(0).enclosure);
+                Log.e("RESULT",response.body().channel.item.get(0).toString());
 
                 /*
                 if (mBlogWrapper != null && mBlogWrapper.getNews() != null) {
@@ -44,12 +47,16 @@ public class NewsRepository {
                 }
                 */
                 movies = new ArrayList<News>();
-                News m = new News();
-                m.setDescription("kj");
-                m.setLink("jdf");
-                m.setmThumbnail("rre");
-                m.setTitle("sfe");
-                movies.add(m);
+
+                for (RssItem item: response.body().channel.item) {
+                    News m = new News();
+                    m.setDescription("kj");
+                    m.setLink("jdf");
+                    m.setmThumbnail("rre");
+                    m.setTitle(item.title);
+                    movies.add(m);
+                }
+
                 mutableLiveData.setValue(movies);
 
             }
