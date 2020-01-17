@@ -24,7 +24,10 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import bendriss.tarek.instantsystem.MainActivity;
 import bendriss.tarek.instantsystem.R;
 import bendriss.tarek.instantsystem.model.News;
 
@@ -34,8 +37,12 @@ import bendriss.tarek.instantsystem.model.News;
 public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final String TAG = "BlogAdapter";
     private List<News> mBlogList;
+    private Context context;
     public NewsAdapter(List<News> blogList) {
         mBlogList = blogList;
+    }
+    public NewsAdapter(List<News> blogList,Context context) {
+        mBlogList = blogList; this.context=context;
     }
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
@@ -62,12 +69,14 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         ImageView ivThumbnail;
         TextView tvTitle;
         ScrollView scrollView;
+        CardView cardView;
         TextView tvDescription;
         TextView tvLink;
         public ViewHolder(View itemView) {
             super(itemView);
             ivThumbnail = itemView.findViewById(R.id.ivThumbnail);
             tvTitle = itemView.findViewById(R.id.tvTitle);
+            cardView = itemView.findViewById(R.id.cardview);
             scrollView = itemView.findViewById(R.id.childScroll);
             //tvDescription = itemView.findViewById(R.id.tvDescription);
             //tvLink = itemView.findViewById(R.id.tvLink);
@@ -102,6 +111,13 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 // Disallow the touch request for parent scroll on touch of child view
                 v.getParent().requestDisallowInterceptTouchEvent(true);
                 return false;
+            });
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity.redirectToDetails();
+                }
             });
             /*
             tvLink.setOnClickListener(v -> {
