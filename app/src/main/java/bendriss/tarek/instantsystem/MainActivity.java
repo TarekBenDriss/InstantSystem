@@ -13,10 +13,13 @@ import bendriss.tarek.instantsystem.adapter.NewsAdapter;
 import bendriss.tarek.instantsystem.model.News;
 import bendriss.tarek.instantsystem.viewmodel.MainViewModel;
 
+import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.util.List;
 
@@ -25,9 +28,15 @@ public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeRefresh;
     private MainViewModel mainViewModel;
     NewsAdapter mBlogAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+
+
         setContentView(R.layout.activity_main);
         initializationViews();
 
@@ -46,23 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
-
-            public boolean onTouch(View v, MotionEvent event) {
-                findViewById(R.id.childScroll).getParent().requestDisallowInterceptTouchEvent(false);
-                return false;
-            }
-        });
-        /*
-        childScroll.setOnTouchListener(new View.OnTouchListener() {
-
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-        */
 
     }
     private void initializationViews() {
@@ -78,17 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 prepareRecyclerView(blogList);
             }
         });
-        /**
-         * Replace this statement with lambda expression
-         * For using set you have to set following lines in app/build.gradle
-         // add below line
-         compileOptions {
-         sourceCompatibility JavaVersion.VERSION_1_8
-         targetCompatibility JavaVersion.VERSION_1_8
-         }
-         // reduce line of code
-         mainViewModel.getAllBlog().observe(this, blogList -> prepareRecyclerView(blogList));
-         */
+
     }
     private void prepareRecyclerView(List<News> blogList) {
         mBlogAdapter = new NewsAdapter(blogList);

@@ -36,24 +36,22 @@ public class NewsRepository {
             @Override
             public void onResponse(Call<NewsWrapper> call, Response<NewsWrapper> response) {
                 NewsWrapper mBlogWrapper = response.body();
-                if(response.body().channel.item.get(0).enclosure!=null)
-                Log.e("ERRKR",response.body().channel.item.get(0).enclosure);
-                Log.e("RESULT",response.body().channel.item.get(0).toString());
 
-                /*
-                if (mBlogWrapper != null && mBlogWrapper.getNews() != null) {
-                    movies = (ArrayList<News>) mBlogWrapper.getNews();
+/*
+                if (mBlogWrapper != null && mBlogWrapper.getChannel() != null) {
+                    movies = (ArrayList<News>) mBlogWrapper.getChannel();
                     mutableLiveData.setValue(movies);
                 }
-                */
+*/
+
                 movies = new ArrayList<News>();
 
-                for (RssItem item: response.body().channel.item) {
+                for (RssItem item: response.body().getChannel().item) {
                     News m = new News();
                     m.setDescription("kj");
                     m.setLink("jdf");
-                    m.setmThumbnail("rre");
-                    m.setTitle(item.title);
+                    m.setmThumbnail(item.getEnclosure().getUrl());
+                    m.setTitle(item.getTitle());
                     movies.add(m);
                 }
 

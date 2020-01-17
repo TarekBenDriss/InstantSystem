@@ -13,10 +13,18 @@ import java.util.List;
 public class NewsWrapper
 {
     @Element
-    public RssChannel channel;
+    private RssChannel channel;
 
     @Override
     public String toString() {
         return "RssFeed [channel=" + channel + "]";
+    }
+
+    public RssChannel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(RssChannel channel) {
+        this.channel = channel;
     }
 }

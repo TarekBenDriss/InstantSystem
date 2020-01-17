@@ -44,7 +44,7 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.news_item, parent, false));
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false));
     }
     @Override
     public int getItemViewType(int position) {
@@ -73,18 +73,22 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             //tvLink = itemView.findViewById(R.id.tvLink);
         }
         protected void clear() {
-            ivThumbnail.setImageDrawable(null);
+            //ivThumbnail.setImageDrawable(null);
             //tvTitle.setText("");
             //tvLink.setText("");
         }
         public void onBind(int position) {
             super.onBind(position);
             final News mBlog = mBlogList.get(position);
+
             if (mBlog.getThumbnail() != null) {
                 Glide.with(itemView.getContext())
                         .load(mBlog.getThumbnail())
                         .into(ivThumbnail);
             }
+
+
+
             if (mBlog.getTitle() != null) {
                 tvTitle.setText(mBlog.getTitle());
             }
@@ -94,13 +98,10 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             if (mBlog.getLink() != null) {
                 //tvLink.setText(mBlog.getLink());
             }
-            scrollView.setOnTouchListener(new View.OnTouchListener() {
-
-                public boolean onTouch(View v, MotionEvent event) {
-                    // Disallow the touch request for parent scroll on touch of child view
-                    v.getParent().requestDisallowInterceptTouchEvent(true);
-                    return false;
-                }
+            scrollView.setOnTouchListener((v, event) -> {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
             });
             /*
             tvLink.setOnClickListener(v -> {

@@ -3,6 +3,7 @@ package bendriss.tarek.instantsystem.model;
 /**
  * Created by Tarek Ben Driss on 16/01/2020.
  */
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 import org.xml.sax.Attributes;
@@ -11,7 +12,7 @@ import org.xml.sax.Attributes;
 public class RssItem
 {
     @Element
-    public String title;
+    private String title;
 
     @Element
     private String link;
@@ -23,10 +24,48 @@ public class RssItem
     private String description;
 
     @Element(name = "enclosure", required = false)
-    public String enclosure;//
+    private RssImage enclosure;//
 
-    //@Element
-    //public RssImage image;
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public RssImage getEnclosure() {
+        return enclosure;
+    }
+
+    public void setEnclosure(RssImage enclosure) {
+        this.enclosure = enclosure;
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     @Override
     public String toString() {
