@@ -31,6 +31,9 @@ public class NewsWrapper {
         List<RssItem> items = channel.getItem();
         List<News> newsList = new ArrayList<>();
         for (RssItem item : items) {
+            if(item.getEnclosure()==null)
+                newsList.add(new News(item.getTitle(), item.getDescription(), item.getLink(), ""));
+            else
             newsList.add(new News(item.getTitle(), item.getDescription(), item.getLink(), item.getEnclosure().getUrl()));
         }
         return newsList;
