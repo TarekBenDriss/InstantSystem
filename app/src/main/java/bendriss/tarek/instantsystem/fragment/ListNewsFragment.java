@@ -1,13 +1,15 @@
 package bendriss.tarek.instantsystem.fragment;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
-import android.net.Uri;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,30 +21,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.List;
 
 import bendriss.tarek.instantsystem.R;
 import bendriss.tarek.instantsystem.adapter.NewsAdapter;
+import bendriss.tarek.instantsystem.databinding.FragmentListNewsBinding;
 import bendriss.tarek.instantsystem.model.News;
-import bendriss.tarek.instantsystem.viewmodel.MainViewModel;
+import bendriss.tarek.instantsystem.utils.ConnectionUtils;
+import bendriss.tarek.instantsystem.viewmodel.NewsViewModel;
 
+/**
+ * This fragment contains the list of the news loaded from the rss. If there is a problem in the internet connection, an animated gif is showed.
+ */
 public class ListNewsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout swipeRefresh;
-    private MainViewModel mainViewModel;
-    private NewsAdapter mBlogAdapter;
+    private NewsViewModel newsViewModel;
+    private NewsAdapter newsAdapter;
+    private LottieAnimationView animationView;
+    private FragmentListNewsBinding mBinding;
 
     public ListNewsFragment() {
-        // Required empty public constructor
     }
 
-    public static ListNewsFragment newInstance(String param1, String param2) {
-        ListNewsFragment fragment = new ListNewsFragment();
-        Bundle args = new Bundle();
-
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,52 +59,91 @@ public class ListNewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_news, container, false);
+        this.mBinding = DataBindingUtil.bind(view);
 
-        initializationViews(view);
-
-        LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(llm);
-        mRecyclerView.setAdapter( mBlogAdapter );
-
-
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        getPopularBlog();
-        // lambda expression
-        swipeRefresh.setOnRefreshListener(() -> {
-            getPopularBlog();
-        });
+        initializationViews();
+        initializationRecyclerView();
+        newsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
+        getListNews();
+        swipeRefresh.setOnRefreshListener(() -> getListNews());
 
         return view;
     }
 
-
-    private void initializationViews(View view) {
-        swipeRefresh = view.findViewById(R.id.swiperefresh);
-        mRecyclerView = view.findViewById(R.id.blogRecyclerView);
+    /**
+     * The initialization of our views
+     */
+    private void initializationViews() {
+        swipeRefresh = mBinding.swiperefresh;
+        mRecyclerView = mBinding.recyclerView;
+        animationView = mBinding.noConnection;
     }
-    public void getPopularBlog() {
-        swipeRefresh.setRefreshing(true);
-        mainViewModel.getAllNews().observe(this, new Observer<List<News>>() {
-            @Override
-            public void onChanged(@Nullable List<News> blogList) {
+
+    /**
+     * The initialization of the recyclerView
+     */
+    private void initializationRecyclerView() {
+        LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(llm);
+        mRecyclerView.setAdapter(newsAdapter);
+    }
+
+    /**
+     * This function get the news from the rss. If the internet connection is broken, an animated gif is showed.
+     */
+    public void getListNews() {
+        if (ConnectionUtils.checkConnection(getContext()) == true) {
+            swipeRefresh.setVisibility(View.VISIBLE);
+            animationView.setVisibility(View.INVISIBLE);
+            swipeRefresh.setRefreshing(true);
+            newsViewModel.getAllNews().observe(this, newsList -> {
                 swipeRefresh.setRefreshing(false);
-                prepareRecyclerView(blogList);
-            }
-        });
-
+                prepareRecyclerView(newsList);
+            });
+        } else {
+            swipeRefresh.setVisibility(View.INVISIBLE);
+            animationView.setVisibility(View.VISIBLE);
+        }
     }
-    private void prepareRecyclerView(List<News> blogList) {
-        mBlogAdapter = new NewsAdapter(blogList,this.getContext());
+
+    /**
+     * This function prepares our recyclerView to show the list of news
+     *
+     * @param newsList
+     */
+    private void prepareRecyclerView(List<News> newsList) {
+        newsAdapter = new NewsAdapter(newsList, this.getContext());
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         } else {
             mRecyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         }
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mBlogAdapter);
-        mBlogAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(newsAdapter);
+        newsAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * This is a broadcast receiver which will check if the internet connection status is changed and then perform a treatment
+     */
+    private BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            getListNews();
+        }
+    };
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getContext().registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        getContext().unregisterReceiver(networkStateReceiver);
+        super.onPause();
+    }
 }

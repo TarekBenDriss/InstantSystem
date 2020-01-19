@@ -1,4 +1,4 @@
-package bendriss.tarek.instantsystem;
+package bendriss.tarek.instantsystem.repository;
 
 import android.app.Application;
 import android.util.Log;
@@ -9,7 +9,6 @@ import java.util.List;
 import androidx.lifecycle.MutableLiveData;
 import bendriss.tarek.instantsystem.model.News;
 import bendriss.tarek.instantsystem.model.NewsWrapper;
-import bendriss.tarek.instantsystem.model.RssItem;
 import bendriss.tarek.instantsystem.service.RestApiService;
 import bendriss.tarek.instantsystem.service.RetrofitInstance;
 import retrofit2.Call;
@@ -17,11 +16,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Tarek Ben Driss on 15/01/2020.
+ * This is the repository of the news which will get a list using the rss url
  */
 
 public class NewsRepository {
-    private ArrayList<News> movies = new ArrayList<>();
+    private ArrayList<News> news = new ArrayList<>();
     private MutableLiveData<List<News>> mutableLiveData = new MutableLiveData<>();
     private Application application;
 
@@ -29,39 +28,24 @@ public class NewsRepository {
         this.application = application;
     }
 
+    /**
+     * This function will perform a call for the rss webservice and get a list of news
+     *
+     * @return list of news
+     */
     public MutableLiveData<List<News>> getMutableLiveData() {
         RestApiService apiService = RetrofitInstance.getApiService();
-        Call<NewsWrapper> call = apiService.getPopularBlog();
+        Call<NewsWrapper> call = apiService.getNewsList();
         call.enqueue(new Callback<NewsWrapper>() {
             @Override
             public void onResponse(Call<NewsWrapper> call, Response<NewsWrapper> response) {
-                NewsWrapper mBlogWrapper = response.body();
-
-/*
-                if (mBlogWrapper != null && mBlogWrapper.getChannel() != null) {
-                    movies = (ArrayList<News>) mBlogWrapper.getChannel();
-                    mutableLiveData.setValue(movies);
-                }
-*/
-
-                movies = new ArrayList<News>();
-
-                for (RssItem item: response.body().getChannel().item) {
-                    News m = new News();
-                    m.setDescription("kj");
-                    m.setLink("jdf");
-                    m.setmThumbnail(item.getEnclosure().getUrl());
-                    m.setTitle(item.getTitle());
-                    movies.add(m);
-                }
-
-                mutableLiveData.setValue(movies);
-
+                NewsWrapper newsWr = response.body();
+                news = (ArrayList<News>) newsWr.getNewsModel();
+                mutableLiveData.setValue(news);
             }
+
             @Override
             public void onFailure(Call<NewsWrapper> call, Throwable t) {
-                Log.e("ERRKR",t.getMessage().toString());
-
             }
         });
         return mutableLiveData;

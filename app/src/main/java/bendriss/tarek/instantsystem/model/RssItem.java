@@ -1,16 +1,14 @@
 package bendriss.tarek.instantsystem.model;
 
-/**
- * Created by Tarek Ben Driss on 16/01/2020.
- */
-import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-import org.xml.sax.Attributes;
+
+/**
+ * This class represents the root news item in the rss feed.
+ */
 
 @Root(name = "item", strict = false)
-public class RssItem
-{
+public class RssItem {
     @Element
     private String title;
 
@@ -24,7 +22,7 @@ public class RssItem
     private String description;
 
     @Element(name = "enclosure", required = false)
-    private RssImage enclosure;//
+    private RssImage enclosure;
 
     public String getLink() {
         return link;

@@ -7,23 +7,34 @@ import org.simpleframework.xml.Root;
 import java.util.List;
 
 /**
- * Created by Tarek Ben Driss on 16/01/2020.
+ * This class represents the channel tag in the rss feed
  */
 @Root(name = "channel", strict = false)
-public class RssChannel
-{
+public class RssChannel {
     @Element
     private String title;
 
-    //@Element
-    //private RssImage image;
-
     @ElementList(inline = true, required = false)
-    public List<RssItem> item;
+    private List<RssItem> item;
 
     @Override
     public String toString() {
-       // return "Channel [image=" + image + ", item=" + item + "]";
-        return "Channel [image=" +  ", item=" + item + "]";
+        return "Channel [image=" + ", item=" + item + "]";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<RssItem> getItem() {
+        return item;
+    }
+
+    public void setItem(List<RssItem> item) {
+        this.item = item;
     }
 }

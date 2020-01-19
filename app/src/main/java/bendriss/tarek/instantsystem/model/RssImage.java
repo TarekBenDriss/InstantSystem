@@ -1,14 +1,14 @@
 package bendriss.tarek.instantsystem.model;
 
 /**
- * Created by Tarek Ben Driss on 16/01/2020.
+ * This class represents the tag enclosure which contains the url of the image and its type
  */
+
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
 @Root(name = "image", strict = false)
-public class RssImage
-{
+public class RssImage {
     @Attribute(name = "url", required = false)
     private String url;
 
@@ -34,6 +34,6 @@ public class RssImage
 
     @Override
     public String toString() {
-        return "RssImage [url=" + url + ", type= "+type+"]";
+        return "RssImage [url=" + url + ", type= " + type + "]";
     }
 }

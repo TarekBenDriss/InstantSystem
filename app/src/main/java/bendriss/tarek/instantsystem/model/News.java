@@ -2,10 +2,12 @@ package bendriss.tarek.instantsystem.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
- * Created by Tarek Ben Driss on 15/01/2020.
+ * The model of the news
  */
-public class News {
+public class News implements Serializable {
 
     @SerializedName("title")
     private String title;
@@ -13,15 +15,16 @@ public class News {
     private String description;
     @SerializedName("link")
     private String link;
-    @SerializedName("thumbnail")
-    private String mThumbnail;
+    @SerializedName("urlImg")
+    private String urlImg;
 
-    public String getThumbnail() {
-        return mThumbnail;
+
+    public String getUrlImg() {
+        return urlImg;
     }
 
-    public void setmThumbnail(String mThumbnail) {
-        this.mThumbnail = mThumbnail;
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 
     public String getTitle() {
@@ -47,4 +50,16 @@ public class News {
     public void setLink(String link) {
         this.link = link;
     }
+
+    public News(String title, String description, String link, String urlImg) {
+        this.title = title;
+        this.description = description;
+        this.link = link;
+        this.urlImg = urlImg;
+    }
+
+    public News() {
+    }
+
+
 }

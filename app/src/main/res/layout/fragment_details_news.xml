@@ -1,98 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="news"
+            type="bendriss.tarek.instantsystem.model.NewsItem"/>
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/grey">
 
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="42dp"
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardview"
+        android:layout_marginEnd="12dp"
+        android:clickable="false"
+        android:foreground="?android:attr/selectableItemBackground"
+
+        android:paddingStart="4dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="4dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-
-            android:layout_marginEnd="12dp"
-            android:clickable="false"
-            android:foreground="?android:attr/selectableItemBackground"
-
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:background="#0F0">
 
 
+            <ImageView
+                android:id="@+id/profile_img"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:transitionName="image"
+
+                app:urlImg="@{news.news.urlImg}"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="h,3:1.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:background="#0F0">
-
-
-                <ImageView
-                    android:id="@+id/profile_img"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintDimensionRatio="h,3:1.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/nom" />
-
+                android:id="@+id/whiteBar"
+                android:background="@color/white2"
+                app:layout_constraintBottom_toBottomOf="@id/profile_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
                     android:id="@+id/nom"
+                    android:transitionName="title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
                     android:fontFamily="@font/roboto_bold"
+                    android:text="@{news.news.title}"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:text="Incendies en Australie : notre journée spéciale pour comprendre"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/prenom"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Tout au long de la journée, « Le Monde » décrypte les causes et les conséquences de ces incendies. Actuellement, nos journalistes sur place, Tout au long de la journée, « Le Monde » décrypte les causes et les conséquences de ces incendies. Actuellement, nos journalistes sur place, Tout au long de la journée, « Le Monde » décrypte les causes et les conséquences de ces incendies. Actuellement, nos journalistes sur place, Tout au long de la journée, « Le Monde » décrypte les causes et les conséquences de ces incendies. Actuellement, nos journalistes sur place, Tout au long de la journée, « Le Monde » décrypte les causes et les conséquences de ces incendies. Actuellement, nos journalistes sur place, Isabelle Dellerba et Christophe Ayad, répondent à vos questions sur la réaction des Australiens."
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/nom"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_img"
-                    tools:text="INR : 3" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <TextView
+                android:id="@+id/prenom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{news.news.description}"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_img"
+                tools:text="INR : 3" />
 
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.06" />
+
+
+            <ImageView
+                android:id="@+id/linkImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white2"
+
+                android:src="@drawable/baseline_link_24"
+                android:onClick="@{(view) ->  news.onLinkClick(view)}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="6dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
