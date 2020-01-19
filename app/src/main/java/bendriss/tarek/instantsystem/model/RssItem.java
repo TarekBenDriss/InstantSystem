@@ -8,7 +8,7 @@ import org.simpleframework.xml.Root;
  */
 
 @Root(name = "item", strict = false)
-public class RssItem {
+class RssItem {
     @Element
     private String title;
 

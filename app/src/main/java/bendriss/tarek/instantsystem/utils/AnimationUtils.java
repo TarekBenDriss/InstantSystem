@@ -11,7 +11,7 @@ public class AnimationUtils {
     /**
      * This function will make an animation using the alpha.
      *
-     * @param img           the imageView wich will be animated
+     * @param img           the imageView which will be animated
      * @param start         the start value of alpha
      * @param end           the final value of alpha
      * @param duration      the duration of the animation

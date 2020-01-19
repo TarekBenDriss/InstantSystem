@@ -9,17 +9,16 @@ import androidx.databinding.BaseObservable;
 import bendriss.tarek.instantsystem.interfaces.ActionsDelegate;
 
 /**
- * This class is used to make the databinding and perform some actions concerning the news
+ * This class is used to make the data binding and perform some actions concerning the news
  */
 public class NewsItem extends BaseObservable {
 
     private final Context context;
     private News news;
-    private ActionsDelegate delegate;
+    private final ActionsDelegate delegate;
 
 
-    public Context getContext() {
-
+    private Context getContext() {
         return context;
     }
 
@@ -49,7 +48,7 @@ public class NewsItem extends BaseObservable {
     /**
      * This function is called after clicking on the link, it opens the article in the browser
      *
-     * @param view the imageView clied
+     * @param view the imageView clicked
      */
     public void onLinkClick(View view) {
         Intent intent = new Intent();

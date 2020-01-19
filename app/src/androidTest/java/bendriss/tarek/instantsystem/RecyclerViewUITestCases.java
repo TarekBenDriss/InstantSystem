@@ -36,7 +36,7 @@ public class RecyclerViewUITestCases {
      * Test the visibility of the recyclerView
      */
     @Test
-    public void testRecyclerVisiblity() {
+    public void testRecyclerVisibility() {
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
                 .inRoot(RootMatchers.withDecorView(
                         Matchers.is(activityRule.getActivity().getWindow().getDecorView())))

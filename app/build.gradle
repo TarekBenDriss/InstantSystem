@@ -42,6 +42,15 @@ dependencies {
     def retrofit_version = "2.6.1"
     def converter_json_version = "2.6.1"
     def recyclerview_version = "28.0.0"
+    def glide_version = "4.8.0"
+    def simplexml_version = "2.6.1"
+    def constraintlayout_version = "2.0.0-beta4"
+    def shapeofview_version = "1.4.4"
+    def appcompat_version = "1.1.0"
+    def lottie_version = "3.3.1"
+    def espresso_core_version = "3.0.2"
+    def espresso_contrib_version = "2.0"
+    def android_test_version = "1.0.2"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$app_compat_version"
@@ -51,37 +60,33 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 
-
-
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$converter_json_version"
     implementation "com.android.support:recyclerview-v7:$recyclerview_version"
-    // Glide for image loading
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    implementation 'com.squareup.retrofit2:converter-simplexml:2.6.1'
+
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    implementation "com.squareup.retrofit2:converter-simplexml:$simplexml_version"
     implementation "androidx.cardview:cardview:$cardview_version"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
-    implementation 'com.github.florent37:shapeofview:1.4.4'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.airbnb.android:lottie:3.3.1'
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    implementation "com.github.florent37:shapeofview:$shapeofview_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.airbnb.android:lottie:$lottie_version"
 
-
-
-    androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.2', {
+    androidTestImplementation ("com.android.support.test.espresso:espresso-core:$espresso_core_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    androidTestImplementation ('com.android.support.test.espresso:espresso-contrib:2.0') {
+    androidTestImplementation ("com.android.support.test.espresso:espresso-contrib:$espresso_contrib_version") {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude module: 'recyclerview-v7'
     }
 
-    androidTestImplementation "com.android.support.test:rules:1.0.2"
-    androidTestImplementation "com.android.support.test:runner:1.0.2"
+    androidTestImplementation "com.android.support.test:rules:$android_test_version"
+    androidTestImplementation "com.android.support.test:runner:$android_test_version"
 
 
 }

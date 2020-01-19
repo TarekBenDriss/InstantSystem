@@ -65,7 +65,7 @@ public class ListNewsFragment extends Fragment {
         initializationRecyclerView();
         newsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
         getListNews();
-        swipeRefresh.setOnRefreshListener(() -> getListNews());
+        swipeRefresh.setOnRefreshListener(this::getListNews);
 
         return view;
     }
@@ -92,8 +92,8 @@ public class ListNewsFragment extends Fragment {
     /**
      * This function get the news from the rss. If the internet connection is broken, an animated gif is showed.
      */
-    public void getListNews() {
-        if (ConnectionUtils.checkConnection(getContext()) == true) {
+    private void getListNews() {
+        if (ConnectionUtils.checkConnection(getContext())) {
             swipeRefresh.setVisibility(View.VISIBLE);
             animationView.setVisibility(View.INVISIBLE);
             swipeRefresh.setRefreshing(true);
@@ -127,7 +127,7 @@ public class ListNewsFragment extends Fragment {
     /**
      * This is a broadcast receiver which will check if the internet connection status is changed and then perform a treatment
      */
-    private BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

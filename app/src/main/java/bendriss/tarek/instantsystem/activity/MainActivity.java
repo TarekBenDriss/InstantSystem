@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements ActionsDelegate {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        WindowUtils.setStausBarColor(this, R.color.grey);
+        WindowUtils.setStatusBarColor(this, R.color.grey);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new ListNewsFragment()).addToBackStack(null).commit();
 
     }

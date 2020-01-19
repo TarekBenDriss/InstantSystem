@@ -14,7 +14,7 @@ import bendriss.tarek.instantsystem.model.News;
  * This is the ViewModel used for news
  */
 public class NewsViewModel extends AndroidViewModel {
-    private NewsRepository newsRepository;
+    private final NewsRepository newsRepository;
 
     public NewsViewModel(@NonNull Application application) {
         super(application);

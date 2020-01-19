@@ -1,7 +1,6 @@
 package bendriss.tarek.instantsystem.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import bendriss.tarek.instantsystem.R;
 import bendriss.tarek.instantsystem.databinding.ActivitySplashScreenBinding;
@@ -11,10 +10,6 @@ import bendriss.tarek.instantsystem.utils.WindowUtils;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.widget.ImageView;
 
 /**
  * The first activity to start, it contains the logo of "lemonde" and then it starts the main activity.
@@ -29,7 +24,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivitySplashScreenBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash_screen);
 
-        WindowUtils.setStausBarColor(this, R.color.black);
+        WindowUtils.setStatusBarColor(this, R.color.black);
         AnimationUtils.setAlphaAnimation(mBinding.logo, 0.0f, 1.0f, 3000, 0);
 
         new Handler().postDelayed(() -> {

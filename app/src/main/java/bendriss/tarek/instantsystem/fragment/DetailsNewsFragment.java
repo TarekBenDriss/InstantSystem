@@ -21,8 +21,6 @@ import bendriss.tarek.instantsystem.model.NewsItem;
  */
 public class DetailsNewsFragment extends Fragment {
 
-    private FragmentDetailsNewsBinding mBinding;
-
     public DetailsNewsFragment() {
     }
 
@@ -46,7 +44,7 @@ public class DetailsNewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_details_news, container, false);
-        this.mBinding = DataBindingUtil.bind(view);
+        FragmentDetailsNewsBinding mBinding = DataBindingUtil.bind(view);
 
         Bundle bundle = this.getArguments();
         News news = new News();

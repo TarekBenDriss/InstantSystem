@@ -1,7 +1,6 @@
 package bendriss.tarek.instantsystem.repository;
 
 import android.app.Application;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +20,9 @@ import retrofit2.Response;
 
 public class NewsRepository {
     private ArrayList<News> news = new ArrayList<>();
-    private MutableLiveData<List<News>> mutableLiveData = new MutableLiveData<>();
-    private Application application;
+    private final MutableLiveData<List<News>> mutableLiveData = new MutableLiveData<>();
 
     public NewsRepository(Application application) {
-        this.application = application;
     }
 
     /**

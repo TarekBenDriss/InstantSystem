@@ -18,17 +18,17 @@ import bendriss.tarek.instantsystem.utils.BaseViewHolder;
 
 
 /**
- * The adapter for the list of news. It is used to be atteched to the recyclerView
+ * The adapter for the list of news. It is used to be attached to the recyclerView
  */
 
 public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private List<News> newsList;
-    private Context context;
+    private final List<News> newsList;
+
     public NewsAdapter(List<News> blogList) {
         newsList = blogList;
     }
     public NewsAdapter(List<News> blogList,Context context) {
-        newsList = blogList; this.context=context;
+        newsList = blogList;
     }
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
@@ -55,7 +55,7 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         private final ItemNewsBinding mBinding;
         private final Context context;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             this.mBinding = DataBindingUtil.bind(itemView);
             this.context = itemView.getContext();

@@ -7,6 +7,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 /**
  * This class will let us get an instance of retrofit. This instance is configured to use tha BASE_URL declared in the BuildConfig
  */
+@SuppressWarnings("deprecation")
 public class RetrofitInstance {
     private static Retrofit retrofit = null;
 

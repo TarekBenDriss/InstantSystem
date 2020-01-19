@@ -16,7 +16,7 @@ public class WindowUtils {
      * @param activity the activity in which the status bar color is changed
      * @param color    is the color to set
      */
-    public static void setStausBarColor(Activity activity, int color) {
+    public static void setStatusBarColor(Activity activity, int color) {
         Window window = activity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
