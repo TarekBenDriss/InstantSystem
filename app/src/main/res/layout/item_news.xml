@@ -2,18 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
         <variable
             name="news"
-            type="bendriss.tarek.instantsystem.model.NewsItem"/>
+            type="bendriss.tarek.instantsystem.model.NewsItem" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
 
-    android:background="@color/grey"
-    android:padding="10dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/grey"
+        android:padding="10dp">
 
 
         <androidx.cardview.widget.CardView
@@ -22,21 +24,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:onClick="@{(view) ->  news.onClick(view)}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:clickable="false"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="@{(view) ->  news.onClick(view)}"
+            android:paddingStart="4dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="4dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="false"
-            android:paddingTop="4dp"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,43 +45,40 @@
                 android:layout_height="wrap_content"
 
                 tools:background="#0F0">
+
                 <ImageView
-                    android:transitionName="image"
-                    android:id="@+id/ivThumbnail"
+                    android:id="@+id/newsIv"
                     android:layout_width="110dp"
                     android:layout_height="75dp"
+                    android:contentDescription="@string/news_img_description"
                     android:scaleType="fitXY"
-                    app:urlImg="@{news.news.urlImg}"
+                    android:transitionName="image"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/description" />
+                    app:urlImg="@{news.news.urlImg}" />
 
 
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="0dp"
-                    android:transitionName="title"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/roboto_regular"
+                    android:text="@{news.news.title}"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:text="@{news.news.title}"
+                    android:transitionName="title"
+                    app:layout_constraintBottom_toBottomOf="@id/newsIv"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/ivThumbnail"
-                    app:layout_constraintTop_toTopOf="@id/ivThumbnail"
-                    app:layout_constraintBottom_toBottomOf="@id/ivThumbnail"/>
-
-
+                    app:layout_constraintStart_toEndOf="@+id/newsIv"
+                    app:layout_constraintTop_toTopOf="@id/newsIv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

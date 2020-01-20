@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">LeMonde</string>
+    <string name="logo_img_description">Le logo LeMonde</string>
+    <string name="link_img_description">Image cliquable qui fait la redirection vers l\'article</string>
+    <string name="news_img_description">L\'image d\'une actualité</string>
     <string name="description">Image description</string>
 </resources>

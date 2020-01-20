@@ -25,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         ActivitySplashScreenBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash_screen);
 
         WindowUtils.setStatusBarColor(this, R.color.black);
-        AnimationUtils.setAlphaAnimation(mBinding.logo, 0.0f, 1.0f, 3000, 0);
+        AnimationUtils.setAlphaAnimation(mBinding.logoIv, 0.0f, 1.0f, 3000, 0);
 
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);

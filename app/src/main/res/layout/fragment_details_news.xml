@@ -46,7 +46,7 @@
 
 
             <ImageView
-                android:id="@+id/profile_img"
+                android:id="@+id/newsIv"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:transitionName="image"
@@ -57,15 +57,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/description" />
+                android:contentDescription="@string/news_img_description" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/whiteBar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/whiteBar"
                 android:background="@color/white2"
-                app:layout_constraintBottom_toBottomOf="@id/profile_img"
+                app:layout_constraintBottom_toBottomOf="@id/newsIv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -104,8 +104,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_img"
-                tools:text="INR : 3" />
+                app:layout_constraintTop_toBottomOf="@+id/newsIv"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
@@ -133,7 +132,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="6dp"
-                android:contentDescription="@string/description" />
+                android:contentDescription="@string/link_img_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
