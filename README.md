@@ -49,7 +49,7 @@ Les détails d'une actualité\
 ![alt text](https://scontent.ftun1-1.fna.fbcdn.net/v/t1.15752-9/82456456_666317097440348_3195661740754862080_n.png?_nc_cat=107&_nc_oc=AQl33q5MBD6TGxMwR92B3ujrAi-TYJFqvtUYNSqvkgZX3CTDM597dy6x4iXgRGWxGXE&_nc_ht=scontent.ftun1-1.fna&oh=3767d89e96539e9868d8ba05353c373e&oe=5ED1BC5B)
 
 Le cas d'absence de la connexion internet\
-![alt text](https://www.linkedin.com/dms/C4D06AQEb_3cLYM1URQ/messaging-attachmentFile/0?m=AQK4I2aaJnO_6AAAAW_CQEGcC2gOjGI8MQcJ8QpZCh1Z-VNPlcMY7RpS-A&ne=1&v=beta&t=ZCPocvptscDnrjwqhRNcg3RT7M44RouXJNaRdK536ok#S6624354001364234240_500)
+![alt text](https://scontent.ftun1-1.fna.fbcdn.net/v/t1.15752-9/82387297_192560038559982_7031508161072726016_n.png?_nc_cat=111&_nc_oc=AQnnhLkwQRkexRYsJhr7VE-Lv8bCxh-tP3igO-KMVZCUbBiI8RHGp5xKS4rztr9nekY&_nc_ht=scontent.ftun1-1.fna&oh=ec91b973565848780450607b0269d389&oe=5E96CD17)
 
 
 
